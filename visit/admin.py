@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.admin import site
 from django.contrib.admin import site as admin_site
+from djangoql.admin import DjangoQLSearchMixin
+
 #from django.core.urlresolvers import reverse
 
 admin.site.site_title = 'Medical Records Administration'
@@ -32,7 +34,7 @@ from .forms import BiopsyForm, ComplaintForm, ExamForm
         #perms = admin.ModelAdmin.get_model_perms(self, *args, **kwargs)
         #perms['list_hide'] = True
         #return perms
-        
+
 class BiopsyAdminInline(admin.TabularInline):
 	model = Biopsy
 	classes = ['collapse']
@@ -41,7 +43,7 @@ class BiopsyAdminInline(admin.TabularInline):
 class ComplaintAdminInline(admin.TabularInline):
 	model = Complaint
 	extra = 1
-	
+
 class ExamAdminInline(admin.TabularInline):
 	model = Exam
 	classes = ['collapse']
@@ -69,6 +71,6 @@ class VisitAdmin(admin.ModelAdmin):
 	'fields': [('visit_date', 'patient')]
 	}),
 	)
-	
+
 
 	inlines = (ComplaintAdminInline, PrescriptionAdminInline, BiopsyAdminInline, HearingAdminInline, ExamAdminInline, )

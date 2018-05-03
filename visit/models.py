@@ -250,7 +250,7 @@ class Medicine(CommonInfo): #14
     id = models.AutoField(primary_key=True)
     brand_name = models.CharField(max_length=50, blank = True, null = True, unique=True)
     generic_name = models.CharField(max_length = 50, blank = True, null = True)
-
+    
     class Meta:
         ordering = [  'brand_name']
 
@@ -263,28 +263,27 @@ class Medicine(CommonInfo): #14
 
 class Prescription(CommonInfo):
     id = models.AutoField(primary_key=True)
-    #patient_prescpt = models.ForeignKey('patient.Patient',     on_delete=models.PROTECT)#, default=1)
     medicine = models.ForeignKey('Medicine', blank=True, null=True, on_delete=models.PROTECT)
-    medicine_dose = models.ForeignKey('Dose', blank=True, null=True, on_delete=models.PROTECT)
-    prescription_reminder = models.ForeignKey('Reminder', blank=True, null=True, on_delete=models.PROTECT)
-    medicine_quantity = models.IntegerField(blank=True, null=True)
     visit = models.ForeignKey('Visit', blank = True, null = True, editable = False, on_delete=models.PROTECT)
+    medicine_dose = models.ForeignKey(Dose, blank=True, null=True, on_delete=models.PROTECT)
+    medicine_reminder = models.ForeignKey('Reminder', blank=True, null=True, on_delete=models.PROTECT)
+    medicine_quantity = models.IntegerField(blank=True, null=True)
     
     def get_absolute_url(self):
         return reverse('prescription-detail', args=[str(self.id)])
 
 class Reminder(CommonInfo):
     id = models.AutoField(primary_key=True)
-    prescription_reminder = models.CharField(max_length=50, blank = True, null = True, unique = True)
+    medicine_reminder = models.CharField(max_length=50, blank = True, null = True, unique = True)
 
     class Meta:
-        ordering = [  'prescription_reminder']
+        ordering = [  'medicine_reminder']
 
     def get_absolute_url(self):
         return reverse('reminder-detail', args=[str(self.id)])
 
     def __str__(self):
-        return '%s' % (self.prescription_reminder)
+        return '%s' % (self.medicine_reminder)
 
 
 class Treatment(CommonInfo):
@@ -311,5 +310,6 @@ class Visit(CommonInfo):
 
     def __str__(self):
         return '%s, %s' % (self.patient, self.visit_date)
+        
 def visit_count(self, obj):
 	return obj.visit__set.count()
