@@ -1,8 +1,8 @@
 django
 gunicorn
 pymysql
-#mysqlclient
-mysql-connector-python
+mysqlclient
+#mysql-connector-python
 reportlab
 django-crum
 django-model-utils
@@ -12,7 +12,8 @@ python-decouple
 xhtml2pdf>=0.2b1
 django-easy-pdf
 WeasyPrint
-#eremaea
+django-debug-toolbar
+django-developer-panel
 django-extensions
 django-autocomplete-light
 django-images

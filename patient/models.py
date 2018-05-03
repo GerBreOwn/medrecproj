@@ -15,7 +15,7 @@ class CommonInfo(models.Model):
     is_active = models.BooleanField(default = True, editable = False)
     created_on = models.DateTimeField(auto_now_add = True, editable = False)
     created_by = models.ForeignKey('auth.User', blank=True, null=True, default = None,editable = False, on_delete=models.SET_DEFAULT, related_name = "+")
-    modified_on = models.DateTimeField(auto_now = True, editable = False) 
+    modified_on = models.DateTimeField(auto_now = True, editable = False)
     modified_by = models.ForeignKey('auth.User', blank = True, null = True, default = None, editable = False, on_delete=models.SET_DEFAULT, related_name = '+')
 
     def get_model_perms(self, *args, **kwargs):
@@ -58,7 +58,7 @@ class Patient(CommonInfo):
     address = models.CharField(max_length=50, blank=True, null=True)
     town = models.ForeignKey('Town', default = None, on_delete=models.SET_DEFAULT)
     date_of_birth = models.DateField(("Date of birth"), default=datetime.date.today)
-    pat_pic = VersatileImageField('Pat_Pic', upload_to='images/')
+    pat_pic = VersatileImageField('Pat_Pic', upload_to='images/' ,blank=True, null=True)
     occupation = models.ForeignKey('Occupation', blank=True, null=True, default = None, on_delete=models.SET_DEFAULT)
     email = models.EmailField(blank=True, null=True)
 
