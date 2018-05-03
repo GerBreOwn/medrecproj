@@ -5,7 +5,7 @@ admin.site.site_title = 'Medical Records Administration'
 admin.site.site_header = 'Medical Records Doctor Administration'
 # Register your models here.
 
-from .models import Doctor#, Hospital, DrOfficeHour
+from .models import Doctor # , Hospital, DrOfficeHour
 
 # def register_hidden_models(*model_names):
     # for m in model_names:
@@ -34,4 +34,3 @@ class DoctorAdmin(admin.ModelAdmin):
 
 # class HospitalAdmin(admin.ModelAdmin):
 	# list_display = ('hosp_name', 'hosp_addr', 'hosp_city')
-

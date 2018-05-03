@@ -1,7 +1,6 @@
 from django.db import models
 from crum import get_current_user
 from django.contrib import admin
-#from django.urls import reverse
 from patient.models import Town
 # Create your models here.
 
@@ -35,9 +34,7 @@ class Doctor(CommonInfo):
 	first_name = models.CharField(max_length = 25, blank = False, null = False, default = " ")
 	last_name = models.CharField(max_length = 20, blank = False, null = False, default = " ")
 	suffix = models.CharField(max_length = 55, blank = False, null = False, default = "M.D.")
-	#office_hour = models.ManyToManyField('DrOfficeHour',max_length = 25, blank = True)
 	telephone = models.CharField(max_length = 12, blank = True, null = True)
-	#afil = models.ManyToManyField('Hospital',max_length = 25, blank = True)
 	lic_no = models.CharField(max_length = 25, blank = True, null = True)
 	ptr_no = models.CharField(max_length = 25, blank = True, null = True)
 	s2_no = models.CharField(max_length = 25, blank = True, null = True)
@@ -47,8 +44,7 @@ class Doctor(CommonInfo):
 		return reverse('doctor-detail', args=[str(self.id)])
 
 	def __str__(self):
-		#return '%s %s' % (self.first_name, self.last_name)
-		return '%s' % (self.last_name)
+		return '%s %s' % (self.first_name, self.last_name)
 
 # class Hospital(CommonInfo):
 	# id = models.AutoField(primary_key = True)
